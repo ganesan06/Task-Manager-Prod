@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Task Manager PROD</title>
+<title>Task Manager QA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -13,6 +13,13 @@
 <div class="topbar">
     <div class="brand" id="brandLogo" title="Go to board"><span class=""></span>TASK MANAGER</div>
     <div class="icon-bar">
+      <div class="role-toggle" id="roleToggle">
+        <button class="role-locked-btn" id="roleLockedBtn">Super User</button>
+        <div class="role-options hidden" id="roleOptions">
+          <button class="role-btn" id="roleSuperBtn" data-role="super">Super User</button>
+          <button class="role-btn" id="roleUserBtn" data-role="user">User</button>
+        </div>
+      </div>
       <button class="icon-btn" id="homeBtn" title="Home">
          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:21px; height:21px;">
     <path d="M3 11l9-8 9 8"/>
@@ -187,6 +194,43 @@
     <p class="modal-body">Please assign this task before drawing on the canvas.</p>
     <div class="modal-actions">
       <button class="modal-confirm" id="assignRequiredOk" style="background:var(--blue);">OK</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay hidden" id="reportModal">
+  <div class="modal-box modal-box-lg">
+    <p class="modal-title">Board report</p>
+    <div class="modal-scroll-body">
+      <div id="reportSummary"></div>
+
+      <p class="report-section-title">Shifts</p>
+      <div class="shift-add-row">
+        <div class="shift-field">
+          <label for="shiftFromInput">From</label>
+          <input type="time" id="shiftFromInput" />
+        </div>
+        <div class="shift-field">
+          <label for="shiftToInput">To</label>
+          <input type="time" id="shiftToInput" />
+        </div>
+        <button class="add-shift-btn" id="addShiftBtn">+ Add Shift</button>
+      </div>
+      <p class="shift-error" id="shiftError"></p>
+      <div class="shift-list" id="shiftList"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="modal-cancel" id="reportModalClose">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay hidden" id="permissionNoticeModal">
+  <div class="modal-box">
+    <p class="modal-title">Permission required</p>
+    <p class="modal-body" id="permissionNoticeBody">Only Super User can do this.</p>
+    <div class="modal-actions">
+      <button class="modal-confirm" id="permissionNoticeOk" style="background:var(--blue);">OK</button>
     </div>
   </div>
 </div>
